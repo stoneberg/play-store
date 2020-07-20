@@ -1,3 +1,6 @@
+server:
+  port: 8090
+
 #server:
 #  error:
 #    include-stacktrace: never
@@ -33,9 +36,3 @@ spring:
 #    export:
 #      jmx:
 #        enabled: true
-        
-          
-          
-          
-          
-          
