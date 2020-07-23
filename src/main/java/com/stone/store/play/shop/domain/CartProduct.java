@@ -11,15 +11,15 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name = "cart_product")
+@Table(name = "store_cart_product")
 public class CartProduct extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(columnDefinition = "integer default 0")
-    private Integer price;
+    @Column(columnDefinition = "Decimal(10,1) default '0.0'")
+    private Float price;
 
     @Column(columnDefinition = "integer default 0")
     private Integer quantity;
@@ -33,14 +33,14 @@ public class CartProduct extends BaseEntity {
     private Product product;
 
     @Builder
-    public CartProduct(Product product, Integer price, Integer quantity) {
+    public CartProduct(Product product, Float price, Integer quantity) {
         this.product = product;
         this.price = price;
         this.quantity = quantity;
     }
 
     // create cartProduct
-    public static CartProduct createCartProduct(Product product, int price, int quantity) {
+    public static CartProduct createCartProduct(Product product, Float price, Integer quantity) {
         return CartProduct.builder()
                 .product(product)
                 .price(price)
@@ -48,8 +48,12 @@ public class CartProduct extends BaseEntity {
                 .build();
     }
 
-    public void updateCart(Cart cart) {
+    // utility method
+    public void setCart(Cart cart) {
         this.cart = cart;
+        if (!cart.getCartProducts().contains(this)) {
+            cart.getCartProducts().add(this);
+        }
     }
 
 }

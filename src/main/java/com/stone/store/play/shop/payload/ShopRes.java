@@ -1,13 +1,10 @@
 package com.stone.store.play.shop.payload;
 
-import com.stone.store.play.shop.domain.Cart;
 import com.stone.store.play.shop.domain.Product;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import lombok.NoArgsConstructor;
 
 public class ShopRes {
 
@@ -17,7 +14,7 @@ public class ShopRes {
         private String title;
         private String description;
         private String image;
-        private Integer price;
+        private Float price;
 
         @Builder
         public ProductDto(Product entity) {
@@ -30,19 +27,15 @@ public class ShopRes {
 
     }
 
-//    @Data
-//    public static class CartDto {
-//        private Long id;
-//        private List<ProductDto> products = new ArrayList<>();
-//
-//        @Builder
-//        public CartDto(Cart entity) {
-//            this.id = entity.getId();
-//            this.products = entity.getCartProducts()
-//                    .stream().map(ProductDto::new)
-//                    .collect(Collectors.toList());
-//
-//        }
-//    }
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class CartDto {
+        private String title;
+        private String description;
+        private String image;
+        private Float price;
+        private Integer quantity;
+    }
 
 }

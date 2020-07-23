@@ -6,13 +6,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name = "products")
+@Table(name = "store_products")
 public class Product extends BaseEntity {
 
     @Id
@@ -28,7 +26,7 @@ public class Product extends BaseEntity {
     @Column(length = 500, nullable = false)
     private String image;
 
-    @Column(columnDefinition = "integer default 0")
-    private Integer price;
+    @Column(columnDefinition = "Decimal(10,1) default '0.0'")
+    private Float price;
 
 }

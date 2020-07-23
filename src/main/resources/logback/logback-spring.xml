@@ -58,6 +58,14 @@
             <appender-ref ref="STDOUT" />
         </logger>
 
+        <logger name="org.springframework.orm.jpa" level="trace" additivity="false">
+            <appender-ref ref="STDOUT" />
+        </logger>
+
+        <logger name="org.springframework.transaction.interceptor" level="trace" additivity="false">
+            <appender-ref ref="STDOUT" />
+        </logger>
+
         <!-- jdbc loggers -->
         <logger name="jdbc.sqltiming" level="ERROR" additivity="false">
             <appender-ref ref="STDOUT" />
