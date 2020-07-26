@@ -38,8 +38,8 @@ public class ShopController {
      * @return
      */
     @GetMapping(path ="/cart")
-    public ResponseEntity<?> getCartProducts() {
-        return ResponseEntity.ok(shopService.getCartProducts());
+    public ResponseEntity<?> getCartItems() {
+        return ResponseEntity.ok(shopService.getCartItems());
     }
 
     /**
@@ -50,6 +50,25 @@ public class ShopController {
     @PostMapping(path ="/cart")
     public ResponseEntity<?> addProductToCart(@RequestBody AddCartDto dto) {
         return ResponseEntity.ok(shopService.addProductToCart(dto));
+    }
+
+    /**
+     * 장바구니에서 상품 제거
+     * @param productId
+     */
+    @DeleteMapping(path = "/cart/{productId}")
+    public ResponseEntity<?> removeItemFromCart(@PathVariable("productId") Long productId) {
+        shopService.removeItemFromCart(productId);
+        return ResponseEntity.ok(productId);
+    }
+
+    /**
+     * 장바구니에서 상품 모두 제거
+     */
+    @DeleteMapping(path = "/cart")
+    public ResponseEntity clearCartItems() {
+        shopService.clearCartItems();
+        return ResponseEntity.ok().build();
     }
 
 }

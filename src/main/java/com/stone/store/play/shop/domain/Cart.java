@@ -6,12 +6,13 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Slf4j
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
@@ -26,7 +27,7 @@ public class Cart extends BaseEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CartProduct> cartProducts = new ArrayList<>();
 
     @Builder
@@ -34,9 +35,11 @@ public class Cart extends BaseEntity {
         this.user = user;
     }
 
+    // static 메서드 crud를 위한 entity를 만들어 내는 용도
+    // 실제 crud는 인스턴스 메서드가 실행
     // create Cart
 //    public static Cart createCart(CartProduct... cartProducts) {
-//        Cart cart = new Cart();
+//        // Cart cart = new Cart();
 //        for (CartProduct cartProduct : cartProducts) {
 //            cart.addCartProduct(cartProduct);
 //        }

@@ -30,7 +30,8 @@ public class ShopRes {
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class CartDto {
+    public static class CartItemDto {
+        private Long id;
         private String title;
         private String description;
         private String image;
